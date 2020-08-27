@@ -1,0 +1,2 @@
+add flyway at while spring init
+if not working check jdbc dependency
