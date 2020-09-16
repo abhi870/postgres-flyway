@@ -30,4 +30,14 @@ public class AppController {
         appUser.setLastName(input.getLastName());
         return appRepository.save(appUser);
     }
+
+    @Autowired
+    private AddressRepo addressRepo;
+    @PostMapping("/addr")
+    public UserAddress saveAddress(@RequestBody Input input){
+        UserAddress userAddress = new UserAddress();
+        userAddress.setAppUserAddressId(appRepository.findByFirstName(input.getFirstName()).getAppuserid());
+        userAddress.setAddress(input.getAddress());
+        return addressRepo.save(userAddress);
+    }
 }
