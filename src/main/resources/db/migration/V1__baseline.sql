@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS appuser(
-    appuserid bigint PRIMARY KEY,
+    appuserid UUID PRIMARY KEY,
     first_name varchar(30),
     last_name varchar(30)
 );

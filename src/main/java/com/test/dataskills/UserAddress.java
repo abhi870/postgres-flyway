@@ -16,23 +16,28 @@ import java.util.UUID;
 public class UserAddress {
 
     @Id
+    @Column(name = "addressid", nullable = false)
+    @GeneratedValue(generator = "uuidGenerator")
+    @GenericGenerator(name="uuidGenerator", strategy = "uuid2")
+    private UUID addressId;
+
     @Column(name = "appuser_address")
-    private Long appUserAddressId;
+    private UUID appUserAddressId;
 
     @Column(name = "address")
     private String address;
 
     public UserAddress(){}
-    public UserAddress(Long appUserAddressId, String address) {
+    public UserAddress(UUID appUserAddressId, String address) {
         this.appUserAddressId = appUserAddressId;
         this.address = address;
     }
 
-    public Long getAppUserAddressId() {
+    public UUID getAppUserAddressId() {
         return appUserAddressId;
     }
 
-    public void setAppUserAddressId(Long appUserAddressId) {
+    public void setAppUserAddressId(UUID appUserAddressId) {
         this.appUserAddressId = appUserAddressId;
     }
 

@@ -3,25 +3,16 @@ package com.test.dataskills;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.util.List;
+
 
 public class Input {
+
+    private String firstName;
+    private String lastName;
+    private List<String> addresses;
+
     public Input(){}
-
-
-    public Input(String firstName, String lastName, String address) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -38,7 +29,17 @@ public class Input {
         this.lastName = lastName;
     }
 
-    private String firstName;
-    private String lastName;
-    private String address;
+    public List<String> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<String> addresses) {
+        this.addresses = addresses;
+    }
+
+    public Input(String firstName, String lastName, List<String> addresses) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.addresses = addresses;
+    }
 }

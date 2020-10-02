@@ -8,7 +8,7 @@ import javax.transaction.Transactional;
 import java.util.UUID;
 
 @Repository
-public interface AppRepository extends JpaRepository<AppUser, Long> {
+public interface AppRepository extends JpaRepository<AppUser, UUID> {
 
     @Transactional
     void deleteByFirstName(String firstName);

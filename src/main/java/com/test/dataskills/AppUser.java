@@ -6,6 +6,7 @@ import lombok.Generated;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -15,18 +16,33 @@ public class AppUser {
     public AppUser(){}
     @Id
     @Column(name = "appuserid")
-    private Long appuserid;
+    @GeneratedValue(generator = "uuidGenerator")
+    @GenericGenerator(name="uuidGenerator", strategy = "uuid2")
+    private UUID appuserid;
 
     @Column(name = "firstName")
     private String firstName;
     @Column(name = "lastName")
     private String lastName;
 
-    public Long getAppuserid() {
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "appuser_address")
+    private List<UserAddress> userAddress;
+
+    public UUID getAppuserid() {
         return appuserid;
     }
 
-    public void setAppuserid(Long appuserid) {
+
+    public List<UserAddress> getUserAddress() {
+        return userAddress;
+    }
+
+    public void setUserAddress(List<UserAddress> userAddress) {
+        this.userAddress = userAddress;
+    }
+
+    public void setAppuserid(UUID appuserid) {
         this.appuserid = appuserid;
     }
 

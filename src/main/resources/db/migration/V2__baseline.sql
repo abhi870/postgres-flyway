@@ -1,4 +1,5 @@
 CREATE TABLE USER_ADDRESS(
-    appuser_address bigint PRIMARY KEY REFERENCES appuser(appuserid),
+    addressid UUID PRIMARY KEY,
+    appuser_address UUID  REFERENCES appuser(appuserid),
     address varchar(30)
 );
