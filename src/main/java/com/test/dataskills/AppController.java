@@ -14,10 +14,18 @@ public class AppController {
     @Autowired
     private AppRepository appRepository;
 
+    @Autowired
+    private AppAddressRepo appAddressRepo;
+
     @GetMapping("/get")
     public AppUser getuser(@RequestParam String firstName){
         AppUser appUser = appRepository.findByFirstName(firstName);
         return appUser;
+    }
+
+    @GetMapping("/getad")
+    public UserAddress getAddress(@RequestParam String address){
+        return appAddressRepo.findByAddress(address);
     }
 
     @GetMapping("/delete")
@@ -29,7 +37,7 @@ public class AppController {
     public AppUser saveUser(@RequestBody Input input){
         AppUser appUser = new AppUser();
         List<UserAddress> userAddress = new ArrayList<>();
-        appUser.setUserAddress(userAddress);
+//        appUser.setUserAddress(userAddress);
 
 
         appUser.setFirstName(input.getFirstName());
@@ -38,10 +46,12 @@ public class AppController {
         input.getAddresses().stream().forEach((address)->{
             UserAddress ad = new UserAddress();
             ad.setAddress(address);
-            appUser.getUserAddress().add(ad);
+//            appUser.getUserAddress().add(ad);
         });
         return appRepository.save(appUser);
     }
+
+
 
 //    @Autowired
 //    private AddressRepo addressRepo;

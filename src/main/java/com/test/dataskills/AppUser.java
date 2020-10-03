@@ -20,30 +20,33 @@ public class AppUser {
     @GenericGenerator(name="uuidGenerator", strategy = "uuid2")
     private UUID appuserid;
 
+    @Column(name = "useraddid")
+    private UUID userAddressId;
+
     @Column(name = "firstName")
     private String firstName;
     @Column(name = "lastName")
     private String lastName;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "appuser_address")
-    private List<UserAddress> userAddress;
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "appuser_address")
+//    private List<UserAddress> userAddress;
+
 
     public UUID getAppuserid() {
         return appuserid;
     }
 
-
-    public List<UserAddress> getUserAddress() {
-        return userAddress;
-    }
-
-    public void setUserAddress(List<UserAddress> userAddress) {
-        this.userAddress = userAddress;
-    }
-
     public void setAppuserid(UUID appuserid) {
         this.appuserid = appuserid;
+    }
+
+    public UUID getUserAddressId() {
+        return userAddressId;
+    }
+
+    public void setUserAddressId(UUID userAddressId) {
+        this.userAddressId = userAddressId;
     }
 
     public String getFirstName() {
@@ -59,6 +62,13 @@ public class AppUser {
     }
 
     public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public AppUser(UUID appuserid, UUID userAddressId, String firstName, String lastName) {
+        this.appuserid = appuserid;
+        this.userAddressId = userAddressId;
+        this.firstName = firstName;
         this.lastName = lastName;
     }
 }

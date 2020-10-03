@@ -21,24 +21,21 @@ public class UserAddress {
     @GenericGenerator(name="uuidGenerator", strategy = "uuid2")
     private UUID addressId;
 
-    @Column(name = "appuser_address")
-    private UUID appUserAddressId;
-
     @Column(name = "address")
     private String address;
 
+    @ManyToOne
+    @JoinColumn(name = "useraddid")
+    private AppUser appUser;
+
     public UserAddress(){}
-    public UserAddress(UUID appUserAddressId, String address) {
-        this.appUserAddressId = appUserAddressId;
-        this.address = address;
+
+    public UUID getAddressId() {
+        return addressId;
     }
 
-    public UUID getAppUserAddressId() {
-        return appUserAddressId;
-    }
-
-    public void setAppUserAddressId(UUID appUserAddressId) {
-        this.appUserAddressId = appUserAddressId;
+    public void setAddressId(UUID addressId) {
+        this.addressId = addressId;
     }
 
     public String getAddress() {
@@ -47,5 +44,19 @@ public class UserAddress {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public AppUser getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
+    }
+
+    public UserAddress(UUID addressId, String address, AppUser appUser) {
+        this.addressId = addressId;
+        this.address = address;
+        this.appUser = appUser;
     }
 }
